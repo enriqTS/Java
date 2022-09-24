@@ -66,7 +66,6 @@ public class Compra{
 		for(Integer quant : this.quantity){
 			quants.add(quant);
 		}
-
 		return quants;
 	}
 

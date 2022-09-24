@@ -13,6 +13,8 @@ import org.json.JSONObject;
 public class Principal {
 
 	public static void main(String[] args) throws IOException {
+		//Leitura inicial dos arquivos e criação das variáveis que recebrão as informações
+
 		Path buypath = Path.of("D:\\Coisas\\Prog\\Java\\Trabalho1\\src\\ComprasFormat.json");
 		Path userpath = Path.of("D:\\Coisas\\Prog\\Java\\Trabalho1\\src\\UsuarioFormat.json");
 		Path productpath = Path.of("D:\\Coisas\\Prog\\Java\\Trabalho1\\src\\ProdutoFormat.json");
@@ -29,6 +31,9 @@ public class Principal {
 		ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
 		ArrayList<Compra> listaCompra = new ArrayList<Compra>();
 		
+		// Os for loops seguinte iteram pelo arquivo JSON e salvam as informações necessárias deles em arrays das classes respectivas a cada arquivo JSON
+		// Foi utilizado uma biblioteca externa para manipular o JSON
+
 		for (int i = 0; i < productJson.length(); i++) {
 			JSONObject jsonObj = productJson.getJSONObject(i);
 			String nome = jsonObj.getString("title");
