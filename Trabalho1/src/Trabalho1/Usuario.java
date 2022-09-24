@@ -41,6 +41,8 @@ public class Usuario{
 		this.nome = nome;
 	}
 	
+	//Função toString sobrecarregada para mostrar os dados salvos na classe Usuario
+
 	@Override
 	public String toString() {
 		String user = "Identificador: " + this.idUsuario + System.lineSeparator() + "Nome: " + this.nome

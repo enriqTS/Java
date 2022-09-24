@@ -68,6 +68,8 @@ public class Principal {
 			listaUsuario.add(p);
 		}
 
+		//Neste for foi necessário criar um JSONArray para tratar do array de objetos no arquivo de compra e criar um array para quantidade e um para o id da compra
+
 		for (int i = 0; i < buyJson.length(); i++) {
 			JSONObject jsonObj = buyJson.getJSONObject(i);
 			JSONArray productsarray = jsonObj.getJSONArray("products");
@@ -97,6 +99,8 @@ public class Principal {
 
 		System.out.println("\n");
 
+		//Este try-catch cria o arquivo caso ele não exista e envia uma mensagem quando o mesmo já existe
+
 		try{
 			File myObj = new File("Arquivo_final.txt");
 			if(myObj.createNewFile()){
@@ -109,7 +113,11 @@ public class Principal {
 			e.printStackTrace();
 		}
 
+		//Criação do escritor de arquivos
+
 		FileWriter myWriter = new FileWriter("Arquivo_final.txt");
+
+		//Este for itera por toda a lista de compras para conseguir as informações necessárias
 
 		for(int i = 0; i < listaCompra.size(); i++) {
 			
@@ -119,6 +127,8 @@ public class Principal {
 
 			myWriter.write("Venda " + buy.getBuyId() + " na data " + buy.getData() + System.lineSeparator());
 
+			//Este for consegue o nome do comprador de acordo com o id da compra atual
+
 			for(int j = 0; j < listaUsuario.size(); j++){
 				user = listaUsuario.get(j);
 				if(buy.getUserId() == user.getIdUsuario()){
@@ -126,6 +136,8 @@ public class Principal {
 					+ " comprou os seguintes produtos: " + System.lineSeparator());
 				}
 			}
+
+			//Este for consegue o nome dos produtos comprados por determinados usuários
 
 			for(int j = 0; j < listaProdutos.size(); j++){
 				prod = listaProdutos.get(j);
@@ -135,6 +147,8 @@ public class Principal {
 					}
 				}
 			}
+
+			//Este for serve para pegar o valor total da compra de determinado usuário e salva na variável soma
 
 			double soma = 0;
 			for(int j = 0; j < listaProdutos.size(); j++){

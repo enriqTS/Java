@@ -52,6 +52,8 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
+	//Função toString sobrecarregada para mostrar os dados salvos na classe Produto
+
 	@Override
 	public String toString() {
 		String prod = "Identificador: " + this.idProduto + System.lineSeparator() + "Nome: " + this.nome

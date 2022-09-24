@@ -85,6 +85,8 @@ public class Compra{
 		this.data = data;
 	}
 
+	//Função toString sobrecarregada para mostrar os dados salvos na classe Compra
+
 	@Override
 	public String toString() {
 		String productIds = "";
