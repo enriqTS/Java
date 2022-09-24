@@ -3,22 +3,22 @@ package Trabalho1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Compra {
+public class Compra{
 	private String buyId;
-	private String userId;
+	private int userId;
 	private List<Integer> productId;
 	private List<Integer> quantity;
 	private String data;
 	
 	public Compra() {
 		this.buyId = "";
-		this.userId = "";
+		this.userId = -1;
 		this.data = "";
 		this.productId = new ArrayList<Integer>();
 		this.quantity = new ArrayList<Integer>();
 	}
 	
-	public Compra(String buyId, String userId, List<Integer> productId,List<Integer> quantity, String data) {
+	public Compra(String buyId, int userId, List<Integer> productId,List<Integer> quantity, String data) {
 		this.buyId = buyId;
 		this.userId = userId;
 		this.data = data;
@@ -36,21 +36,21 @@ public class Compra {
 		this.buyId = buyId;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	public String getProductId() {
-		String itens = "";
+	public ArrayList<Integer> getProductId() {
+		ArrayList<Integer> ids = new ArrayList<Integer>();
 		for (Integer item : this.productId) {
-			itens = itens + item + " | ";
+			ids.add(item);
 		}
 
-		return itens;
+		return ids;
 	}
 
 	public void setProductId(ArrayList<Integer> productIds) {
@@ -61,13 +61,13 @@ public class Compra {
 		this.productId = productId;
 	}
 
-	public String getQuantity() {
-		String itens = "";
-		for (Integer item : this.quantity) {
-			itens = itens + item + " | ";
+	public ArrayList<Integer> getQuantity() {
+		ArrayList<Integer> quants = new ArrayList<Integer>();
+		for(Integer quant : this.quantity){
+			quants.add(quant);
 		}
 
-		return itens;
+		return quants;
 	}
 
 	public void setQuantity(ArrayList<Integer> quantity) {

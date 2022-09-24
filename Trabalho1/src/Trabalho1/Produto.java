@@ -1,34 +1,34 @@
 package Trabalho1;
 
 public class Produto {
-	private String idProduto;
+	private int idProduto;
 	private String nome;
-	private String preco;
+	private double preco;
 	private String descricao;
 	
 	public Produto() {
-		this.idProduto = "";
+		this.idProduto = -1;
 		this.nome = "";
-		this.preco = "";
+		this.preco = -1;
 		this.descricao = "";
 	}
 	
-	public Produto(String idProduto, String nome, String preco, String descricao) {
+	public Produto(int idProduto, String nome, double preco, String descricao) {
 		this.idProduto = idProduto;
 		this.nome = nome;
 		this.preco = preco;
 		this.descricao = descricao;
 	}
 	
-	public String getIdProduto() {
+	public int getIdProduto() {
 		return idProduto;
 	}
 	
-	public String getPreco() {
+	public double getPreco() {
 		return preco;
 	}
 	
-	public String getNome() {
+	public String getProdNome() {
 		return nome;
 	}
 	
@@ -36,15 +36,15 @@ public class Produto {
 		return descricao;
 	}
 	
-	public void setIdProduto(String idProduto) {
+	public void setIdProduto(int idProduto) {
 		this.idProduto = idProduto;
 	}
 	
-	public void setPreco(String preco) {
+	public void setPreco(double preco) {
 		this.preco = preco;
 	}
 	
-	public void setNome(String nome) {
+	public void setProdNome(String nome) {
 		this.nome = nome;
 	}
 	

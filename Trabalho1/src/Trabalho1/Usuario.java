@@ -1,23 +1,23 @@
 package Trabalho1;
 
-public class Usuario {
-	private String idUsuario;
+public class Usuario{
+	private int idUsuario;
 	private String nome;
 	private String email;
 	
 	public Usuario() {
-		this.idUsuario = "";
+		this.idUsuario = -1;
 		this.nome = "";
 		this.email = "";
 	}
 	
-	public Usuario(String idUsuario, String nome, String email) {
+	public Usuario(int idUsuario, String nome, String email) {
 		this.idUsuario = idUsuario;
 		this.nome = nome;
 		this.email = email;
 	}
 	
-	public String getIdUsuario() {
+	public int getIdUsuario() {
 		return idUsuario;
 	}
 	
@@ -29,7 +29,7 @@ public class Usuario {
 		return nome;
 	}
 	
-	public void setIdUsuario(String idUsuario) {
+	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 	

@@ -1,5 +1,7 @@
 package Trabalho1;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,16 +33,14 @@ public class Principal {
 			JSONObject jsonObj = productJson.getJSONObject(i);
 			String nome = jsonObj.getString("title");
 			int idProduto = jsonObj.getInt("id");
-			int preco = jsonObj.getInt("price");
+			double preco = jsonObj.getDouble("price");
 			String descricao = jsonObj.getString("description");
 			
 			Produto p = new Produto();
 			
-			p.setNome(nome);
-			String idProdutos = "" + idProduto;
-			p.setIdProduto(idProdutos);
-			String precos = "" + preco;
-			p.setPreco(precos);
+			p.setProdNome(nome);
+			p.setIdProduto(idProduto);
+			p.setPreco(preco);
 			p.setDescricao(descricao);
 			
 			listaProdutos.add(p);
@@ -57,8 +57,7 @@ public class Principal {
 			Usuario p = new Usuario();
 			
 			p.setNome(nome);
-			String idUsuarios = "" + idUsuario;
-			p.setIdUsuario(idUsuarios);
+			p.setIdUsuario(idUsuario);
 			p.setEmail(email);
 			
 			listaUsuario.add(p);
@@ -81,34 +80,78 @@ public class Principal {
 			Compra p = new Compra();
 
 			String buyId = "" + idCompra;
-			String userId = "" + idUsuario;
-
+			
 			p.setProductId(productIds);
 			p.setQuantity(quantity);
 			p.setBuyId(buyId);
-			p.setUserId(userId);
+			p.setUserId(idUsuario);
 			p.setData(date);
 			
 			listaCompra.add(p);
 		}
 
-		for(Produto prod : listaProdutos) {
-			System.out.println(prod.toString());
-		}
-
-		System.out.println("\n");
-		
-		for(Usuario user : listaUsuario) {
-			System.out.println(user.toString());
-		}
-
 		System.out.println("\n");
 
-		for(Compra buy : listaCompra) {
-			System.out.println(buy.toString());
+		try{
+			File myObj = new File("Arquivo_final.txt");
+			if(myObj.createNewFile()){
+				System.out.println("Arquivo criado: " + myObj.getName());
+			}else{
+				System.out.println("Arquivo já existe.");
+			}
+		}catch (IOException e) {
+			System.out.println("Um erro ocorreu.");
+			e.printStackTrace();
 		}
+
+		FileWriter myWriter = new FileWriter("Arquivo_final.txt");
+
+		for(int i = 0; i < listaCompra.size(); i++) {
+			
+			Compra buy = listaCompra.get(i);
+			Usuario user = listaUsuario.get(i);
+			Produto prod = listaProdutos.get(i);
+
+			myWriter.write("Venda " + buy.getBuyId() + " na data " + buy.getData() + System.lineSeparator());
+
+			for(int j = 0; j < listaUsuario.size(); j++){
+				user = listaUsuario.get(j);
+				if(buy.getUserId() == user.getIdUsuario()){
+					myWriter.write("Usuário " + user.getNome() 
+					+ " comprou os seguintes produtos: " + System.lineSeparator());
+				}
+			}
+
+			for(int j = 0; j < listaProdutos.size(); j++){
+				prod = listaProdutos.get(j);
+				for(int k = 0; k < buy.getProductId().size(); k++){
+					if(buy.getProductId().get(k) == prod.getIdProduto()){
+						myWriter.write(prod.getProdNome() + "\n");
+					}
+				}
+			}
+
+			double soma = 0;
+			for(int j = 0; j < listaProdutos.size(); j++){
+				prod = listaProdutos.get(j);
+				for(int k = 0; k < buy.getProductId().size(); k++){
+					if(buy.getProductId().get(k) == prod.getIdProduto()){
+						soma += buy.getQuantity().get(k)*prod.getPreco();
+					}
+				}
+			}
+
+			myWriter.write("Total da compra: " + soma + System.lineSeparator());
+			
+			myWriter.write(System.lineSeparator());
+						
+		}
+
+		myWriter.close();
 		
 	}
+
+	
 	
 
 }
